@@ -1,4 +1,5 @@
 <div class="post-archive">
+	<% if !posts.nil?%>
   <% posts.group_by(&:year).each do |year, posts_by_year| %>
     <h4 class="year"><%= link_to year, post_date_path(@blog, year) %></h4>
     <% index = 0 %>
@@ -24,4 +25,6 @@
     <% end %>
     <br class="clear"/>
   <% end %>
+  
+  <%end%>
 </div>

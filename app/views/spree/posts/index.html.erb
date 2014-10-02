@@ -2,7 +2,7 @@
   <% if @posts.blank? %>
     <h1><%= t('spree.blogs.no_posts') %></h1>
   <% else %>
-    <%= render :partial => 'spree/blogs/shared/preview', :collection => @posts, :as => :post %>
+    <%= render :partial => 'spree/shared/preview', :collection => @posts, :as => :post %>
   <% end %>
   <br class="clear"/>
 
@@ -15,5 +15,5 @@
 </div>  
 
 <% content_for :sidebar do %>
-  <%= render :partial => 'spree/blogs/shared/sidebar' %>
+  <%= render :partial => 'spree/shared/sidebar' %>
 <% end %>

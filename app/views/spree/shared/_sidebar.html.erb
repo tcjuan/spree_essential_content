@@ -1,17 +1,19 @@
 <div class="post-sidebar" data-hook="post-sidebar">
 
   <h3><%= t('.recent_posts') %></h3>
-  <%= render 'spree/blogs/shared/archive', :posts => @archive_posts %>
+  <%= render 'spree/shared/archive', :posts => @archive_posts %>
 
   <div class="post-categories" data-hook="post-categories">
     <h3><%= t('.categories') %></h3>
     <ul>
+    	<% if !@post_categories.nil?%>
       <% @post_categories.each do |category| %>
         <li><%= link_to category.name, post_category_path(@blog, category.permalink) %></li>
       <% end %>
+      <%end %>
     </ul>
   </div>
-
+<%if !@tags.nil?%>
   <div class="tag-cloud" data-hook="post-tag-cloud">
     <h3><%= t('.tags') %></h3>
     <ul class="tags">
@@ -20,5 +22,5 @@
       <% end %>
     </ul>
   </div>
-
+<% end %>
 </div>

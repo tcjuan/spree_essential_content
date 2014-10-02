@@ -12,11 +12,18 @@ Spree::HomeController.class_eval do
   private
 
     def get_homepage
-      @page = Spree::Page.find_by_path("/")
+    @page = Spree::Page.find_by_path("/")
+    
     end
 
     def accurate_title
       @page.meta_title unless @page.nil?
+    end
+    
+    
+     def find_by_path(_path)
+      return super('/') if _path == "_home_" && self.exists?(:path => "/")
+      super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
     end
 
 end

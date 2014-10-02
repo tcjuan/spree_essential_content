@@ -15,13 +15,16 @@
 <% end %>
 
 <div class="right">
-  <% if defined?(Spree::SpreeEssentialBlog) && !@posts.blank? %>
+	========================>post
+  <% if  !@posts.blank? %>
+  ++++++++++++++++++++inside post
     <div class="home-posts">
       <h1><%= t('blog.home.title') %></h1>
-      <%= render :partial => 'spree/blog/shared/preview', :collection => @posts, :as => :post %>
+      <%= render :partial => 'spree/shared/preview', :collection => @posts, :as => :post %>
     </div>
   <% end %>
   <% if defined?(Spree::SpreeEssentialNews) && !@articles.blank? %>
+  ========================> insies artical
     <div class="home-articles">
       <h1><%= t('news.home.title') %></h1>
       <%= render :partial => 'spree/news/articles/preview', :collection => @articles, :as => :article %>
