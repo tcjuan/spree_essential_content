@@ -3,7 +3,9 @@ class Spree::Page < ActiveRecord::Base
   class << self
     def find_by_path(_path)
       return super('/') if _path == "_home_" && self.exists?(:path => "/")
-      super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
+     # super _path.to_s.sub(/^\/*/, "/").gsub("--", "/")
+     super _path
+     
     end
   end
 
@@ -16,8 +18,8 @@ class Spree::Page < ActiveRecord::Base
   scope :active,  where(:accessible => true)
   scope :visible, active.where(:visible => true)
 
-  has_many :contents, :order => :position, :dependent => :destroy
-  has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :order => :position, :dependent => :destroy
+  has_many :contents,  :dependent => :destroy
+  has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :dependent => :destroy
 
   before_validation :set_defaults
   after_create :create_default_content
@@ -61,7 +63,7 @@ class Spree::Page < ActiveRecord::Base
       #return errors.add(:path, "is reserved. Please use another") if path.to_s =~ /home/
       self.nav_title = title if nav_title.blank?
       self.path = nav_title.parameterize if path.blank?
-      self.path = "/" + path.sub(/^\//, "")
+      self.path =  path.sub(/^\//, "")
     end
 
     def create_default_content
