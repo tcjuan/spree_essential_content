@@ -2,13 +2,13 @@ Spree::HomeController.class_eval do
 
   before_filter :get_homepage
 
-  def index
-    @searcher = Spree::Config.searcher_class.new(params)
+  #def index
+  #  @searcher = Spree::Config.searcher_class.new(params)
    # @products = @searcher.retrieve_products
-      @products = @searcher.retrieve_products(current_store.id)
-    @latest_products = Spree::Product.by_store(current_store.id).available.order("available_on DESC").limit(16)
-    render :template => "spree/pages/home"
-  end
+  #   @products = @searcher.retrieve_products(current_store.id)
+  #  @latest_products = Spree::Product.by_store(current_store.id).available.order("available_on DESC").limit(16)
+  #  render :template => "spree/pages/home"
+  #end
 
   private
 
