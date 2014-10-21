@@ -15,8 +15,8 @@ class Spree::Page < ActiveRecord::Base
   validates_presence_of :title
   validates :path, :presence => true, :uniqueness => { :case_sensitive => false }
 
-  scope :active,  where(:accessible => true)
-  scope :visible, active.where(:visible => true)
+  scope :active, -> {where(:accessible => true)}
+  scope :visible, -> {active.where(:visible => true)}
 
   has_many :contents,  :dependent => :destroy
   has_many :images, :as => :viewable, :class_name => "Spree::PageImage", :dependent => :destroy
